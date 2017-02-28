@@ -430,8 +430,8 @@ namespacevalue
      }
 
 attribute
-	: IDENT S*
-	  ((EQUALS | INCLUDES | DASHMATCH | STARTSWITH | ENDSWITH | CONTAINS) S* (IDENT | string) S*)?
+	: namespacevalue S*
+	  ((EQUALS | INCLUDES | DASHMATCH | STARTSWITH | ENDSWITH | CONTAINS | GREATEREQUALS | LESSEQUALS) S* (IDENT | string | NUMBER*) S*)?
 	;
     catch [RecognitionException re] {
         log.error("Recognition exception | attribute | should be empty");
