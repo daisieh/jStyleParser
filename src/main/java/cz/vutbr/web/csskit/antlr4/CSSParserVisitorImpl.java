@@ -1269,17 +1269,36 @@ public class CSSParserVisitorImpl implements CSSParserVisitor<Object>, CSSParser
         //is attribute like [attr=value]
         if (ctx2.size() == 3) {
             CommonToken opToken = (CommonToken) ((TerminalNodeImpl) ctx2.get(1)).symbol;
-            isStringValue = (ctx2.get(2) instanceof CSSParser.StringContext);
-            if (isStringValue) {
-                value = ctx2.get(2).getText();
-            } else {
 
+            Float floatVal = null;
+            try {
+                floatVal = Float.parseFloat(ctx2.get(2).getText());
+            } catch (NumberFormatException e) {
+                //nothing
+            }
+
+            // string values are either actual strings or numerical values. Identifiers are not strings.
+            if (ctx2.get(2) instanceof CSSParser.StringContext) {
+                isStringValue = true;
+                value = ctx2.get(2).getText();
+            } else if (floatVal != null) {
+                isStringValue = true;
+                value = floatVal.toString();
+            } else {
                 value = ctx2.get(2).getText();
             }
             value = extractTextUnescaped(value);
             switch (opToken.getType()) {
                 case CSSParser.EQUALS: {
                     op = Selector.Operator.EQUALS;
+                    break;
+                }
+                case CSSParser.LESSEQUALS: {
+                    op = Selector.Operator.LESSEQUALS;
+                    break;
+                }
+                case CSSParser.GREATEREQUALS: {
+                    op = Selector.Operator.GREATEREQUALS;
                     break;
                 }
                 case CSSParser.INCLUDES: {
