@@ -403,7 +403,7 @@ combinator
 
 selector
     : (IDENT | ASTERISK)  selpart* S*
-    | selpart+ S*
+    | selpart+ S* selpart*
     ;
     catch [RecognitionException re] {
         log.error("PARSING selector ERROR | inserting INVALID_SELECTOR");
