@@ -46,6 +46,8 @@ public interface Selector extends Rule<Selector.SelectorPart> {
     	CONTAINS("*="),
     	STARTSWITH("^="),
     	ENDSWITH("$="),
+        LESSEQUALS("<="),
+        GREATEREQUALS(">="),
     	NO_OPERATOR("");
     	
     	private String value;

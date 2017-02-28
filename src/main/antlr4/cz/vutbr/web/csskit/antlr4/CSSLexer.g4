@@ -366,7 +366,15 @@ GREATER
 
 LESS
     : '<'
-    ;    	
+    ;
+
+GREATEREQUALS
+    : '>='
+    ;
+
+LESSEQUALS
+    : '<='
+    ;
 
 LCURLY
 	: '{'  {ls.curlyNest++;}
