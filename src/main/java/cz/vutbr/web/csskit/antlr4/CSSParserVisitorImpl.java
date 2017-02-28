@@ -1245,6 +1245,10 @@ public class CSSParserVisitorImpl implements CSSParserVisitor<Object>, CSSParser
         return null;
     }
 
+    public Selector.ElementAttribute visitNamespacevalue(CSSParser.NamespacevalueContext ctx) {
+        return null;
+    }
+
 
     @Override
     /**

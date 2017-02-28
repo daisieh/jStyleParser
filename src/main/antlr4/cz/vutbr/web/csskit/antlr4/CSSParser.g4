@@ -422,6 +422,13 @@ selpart
         _localctx.addErrorNode(this.getTokenFactory().create(INVALID_SELPART, "INVALID_SELPART"));
 	  }
 
+namespacevalue
+    : IDENT* COLON* IDENT*
+    ;
+    catch [RecognitionException re] {
+        log.error("parsing namespaceval error");
+     }
+
 attribute
 	: IDENT S*
 	  ((EQUALS | INCLUDES | DASHMATCH | STARTSWITH | ENDSWITH | CONTAINS) S* (IDENT | string) S*)?
